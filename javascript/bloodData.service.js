@@ -3,42 +3,66 @@ var app = angular.module("myApp");
 app.value("bloodData", [
     {
         group: "A+",
-        count: 0,
-        image: "images/a+.png"
+        count: Math.floor(Math.random()*10),
+        image: "images/a+.png",
+        canDonate: false,
+        isAvailable: false,
+        canDonateTo: ["A+", "AB+"]
     },
     {
         group: "B+",
-        count: 0,
-        image: "images/b+.png"
+        count: Math.floor(Math.random()*10),
+        image: "images/b+.png",
+        canDonate: false,
+        isAvailable: false,
+        canDonateTo: ["B+", "AB+"]
     },
     {
         group: "O+",
-        count: 0,
-        image: "images/o+.png"
+        count: Math.floor(Math.random()*10),
+        image: "images/o+.png",
+        canDonate: false,
+        isAvailable: false,
+        canDonateTo: ["A+", "AB+", "B+", "O+"]
     },
     {
         group: "AB+",
-        count: 0,
-        image: "images/ab+.png"
+        count: Math.floor(Math.random()*10),
+        image: "images/ab+.png",
+        canDonate: false,
+        isAvailable: false,
+        canDonateTo: ["AB+"]
     },
     {
         group: "A-",
-        count: 0,
-        image: "images/a-.png"
+        count: Math.floor(Math.random()*10),
+        image: "images/a-.png",
+        canDonate: false,
+        isAvailable: false,
+        canDonateTo: ["A+", "AB+","A-", "AB-"]
     },
     {
         group: "B-",
-        count: 0,
-        image: "images/b-.png"
+        count: Math.floor(Math.random()*10),
+        image: "images/b-.png",
+        canDonate: false,
+        isAvailable: false,
+        canDonateTo: ["B+", "AB+","B-", "AB-"]
     },
     {
         group: "O-",
-        count: 0,
-        image: "images/o-.png"
+        count: Math.floor(Math.random()*10),
+        image: "images/o-.png",
+        canDonate: false,
+        isAvailable: false,
+        canDonateTo: ["B+", "AB+","B-", "AB-", "A+","A-","O+", "O-"]
     },
     {
         group: "AB-",
-        count: 0,
-        image: "images/ab-.png"
+        count: Math.floor(Math.random()*10),
+        image: "images/ab-.png",
+        canDonate: false,
+        isAvailable: false,
+        canDonateTo: ["AB-", "AB+"]
     }
 ]);
