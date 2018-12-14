@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" ng-App="myApp">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -12,24 +13,31 @@
     <script src="javascript/app.js"></script>
     <script src="javascript/main.controller.js"></script>
     <script src="javascript/bloodData.service.js"></script>
-  </head>
-  <body  ng-controller="mainCtrl">
+    <script src="javascript/lvl-drag-drop.js"></script>
+    <script src="javascript/lvl-uuid.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+</head>
+
+<body ng-controller="mainCtrl">
 
     <div class="header">
         <h2>Blood Bank</h2>
     </div>
-    
+
     <div class="container blood-bottles">
-      <div class="row">
-          <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" ng-repeat="blood in blood_data">
-            <div class="bottle" ng-class="{'gray':blood.canDonate===false && blood.isAvailable===false,'light-green':blood.canDonate===true,'dark-green': blood.canDonate===true && blood.isAvailable===true}">
-                <img ng-src="{{blood.image}}" alt="{{blood.group}}" width="100%" height="auto">
+        <div class="row">
+            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" ng-repeat="blood in blood_data">
+                <div class="bottle" ng-class="{'gray':blood.canDonate===false && blood.isAvailable===false,'light-green':blood.canDonate===true,'dark-green': blood.canDonate===true && blood.isAvailable===true}">
+                    <img ng-src="{{blood.image}}" class="bottle-img" x-lvl-draggable="true" draggable="{{blood.isAvailable===true && blood.canDonate===true}}"
+                        data-img="{{blood.image}}" data-grp="{{$index}}" style="cursor:move" alt="{{blood.group}}"
+                        width="100%" height="auto">
+                </div>
+                <div class="count">
+                    {{blood.count}}
+                </div>
             </div>
-            <div class="count">
-                {{blood.count}}
-            </div>
-          </div>
-      </div>
+        </div>
     </div>
 
     <div class="container requirement">
@@ -37,31 +45,38 @@
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                 <div class="req-form">
                     <h4>Requirement Form</h4>
-                        <form>
+                    <form>
 
-                                <select ng-change="canDonateFun()" ng-model="required_blood_group" ng-options="x.group for x in blood_data" class="form-field">
-                                        <option value="">Select Blood Group</option>
-                                </select>
-            
-                                <input type="number" ng-change="isAvailableFun()" ng-model="required_blood_units" min="0" placeholder="Number of Units Required"  class="form-field">
-            
-                            </form>
-                            <p class="status available" ng-show="anythingAvailable">Required Blood is Available, Drag into container :)</p>
-                            <p class="status not-available" ng-hide="anythingAvailable">Sorry, Required Blood is not Available :(</p>
+                        <select ng-change="canDonateFun()" ng-model="required_blood_group" ng-options="x.group for x in blood_data"
+                            class="form-field">
+                            <option value="">Select Blood Group</option>
+                        </select>
+
+                        <input type="number" ng-change="isAvailableFun()" ng-model="required_blood_units" min="0"
+                            placeholder="Number of Units Required" class="form-field">
+
+                    </form>
+                    <p class="status available" ng-show="anythingAvailable">Required Blood is Available, Drag into
+                        container :)</p>
+                    <p class="status not-available" ng-hide="anythingAvailable">Sorry, Required Blood is not Available
+                        :(</p>
                 </div>
-                
-                
-                
+
             </div>
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                 <div class="bucket">
-                        <div class="blood-container" ng-class="{'green-container':anythingAvailable}">
-                    
+                    <div class="blood-container" ng-class="{'green-container':anythingAvailable}">
+                        <div class="bottle-ctnr" x-lvl-drop-target="true" x-on-drop="dropped(dragEl, dropEl)">
+
                         </div>
+                        <div class="bottle-count">
+                            {{required_blood_units}}
+                        </div>
+                    </div>
                 </div>
-                
             </div>
         </div>
     </div>
-  </body>
+</body>
+
 </html>
