@@ -22,7 +22,7 @@
     <div class="container blood-bottles">
       <div class="row">
           <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" ng-repeat="blood in blood_data">
-            <div class="bottle">
+            <div class="bottle" ng-class="{'gray':blood.canDonate===false && blood.isAvailable===false,'light-green':blood.canDonate===true,'dark-green': blood.canDonate===true && blood.isAvailable===true}">
                 <img ng-src="{{blood.image}}" alt="{{blood.group}}" width="100%" height="auto">
             </div>
             <div class="count">
@@ -39,14 +39,15 @@
                     <h4>Requirement Form</h4>
                         <form>
 
-                                <select ng-model="required_blood" ng-options="x.group for x in blood_data" class="form-field">
+                                <select ng-change="canDonateFun()" ng-model="required_blood_group" ng-options="x.group for x in blood_data" class="form-field">
                                         <option value="">Select Blood Group</option>
                                 </select>
             
-                                <input type="number" min="0" placeholder="Number of Units Required"  class="form-field">
+                                <input type="number" ng-change="isAvailableFun()" ng-model="required_blood_units" min="0" placeholder="Number of Units Required"  class="form-field">
             
                             </form>
-                            <p class="status">Required Blood is Available, Drag into container !!</p>
+                            <p class="status available" ng-show="anythingAvailable">Required Blood is Available, Drag into container :)</p>
+                            <p class="status not-available" ng-hide="anythingAvailable">Sorry, Required Blood is not Available :(</p>
                 </div>
                 
                 
@@ -54,7 +55,7 @@
             </div>
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                 <div class="bucket">
-                        <div class="blood-container">
+                        <div class="blood-container" ng-class="{'green-container':anythingAvailable}">
                     
                         </div>
                 </div>
