@@ -63,7 +63,7 @@
     border-radius: 0 0 30px 30px;
 }
 .green-container{
-    border-color: rgb(113, 253, 148);
+    border-color: rgb(113, 253, 148) !important;
 }
 .req-form{
     width: 80%;
@@ -103,4 +103,35 @@
 }
 .not-available{
     color: rgb(255, 28, 66);
+}
+.dropped-bottle{
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.bottle-ctnr{
+    width: 50%;
+    height: 80%;
+    border: 2px dashed rgb(204, 204, 204);
+    border-radius: 20px;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 20px;
+    display: inline-block;
+}
+.bottle-count{
+    width: 30%;
+    height: 80%;
+    border-radius: 20px;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-right: 20px;
+    float: right;
+    line-height: 125px;
+    font-size: 35px;
+    text-align: center;
+    color: rgb(240,240,240);
+    font-family: 'Major Mono Display', monospace;
 }
