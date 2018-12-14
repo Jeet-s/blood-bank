@@ -12,13 +12,22 @@
     border-radius: 50%;
     background-color: white;
     border: 5px solid white;
-    background-color: rgb(86, 211, 117);
+    background-color: rgb(204, 204, 204);
     box-shadow: inset 0 0 20px #333, 0 0 30px #000;
     width: 70%;
     position: relative;
     left: 50%;
     transform: translateX(-50%);
     padding: 10px;
+}
+.gray{
+    background-color: rgb(204, 204, 204);
+}
+.light-green{
+    background-color: rgb(132, 218, 154);
+}
+.dark-green{
+    background-color: rgb(18, 243, 74);
 }
 .count{
     text-align: center;
@@ -53,6 +62,9 @@
     border-bottom: 10px solid rgb(200, 200, 200);
     border-radius: 0 0 30px 30px;
 }
+.green-container{
+    border-color: rgb(113, 253, 148);
+}
 .req-form{
     width: 80%;
     height: auto;
@@ -79,10 +91,16 @@
     text-align: center;
     padding-bottom: 10px;
 }
-.req-form p{
+.req-form p.status{
     margin: 0;
     padding: 0;
     font-size: 14px;
-    color: rgb(87, 216, 120);
+    
     font-weight: bold;
+}
+.available{
+    color: rgb(87, 216, 120);
+}
+.not-available{
+    color: rgb(255, 28, 66);
 }
