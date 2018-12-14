@@ -6,14 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Blood Bank</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Major+Mono+Display" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.5/angular.min.js"></script>
     <script src="javascript/app.js"></script>
     <script src="javascript/main.controller.js"></script>
     <script src="javascript/bloodData.service.js"></script>
   </head>
-  <body>
-    <div class="container blood-bottles" ng-controller="mainCtrl">
-      <h2>Blood Bank</h2>
+  <body  ng-controller="mainCtrl">
+
+    <div class="header">
+        <h2>Blood Bank</h2>
+    </div>
+    
+    <div class="container blood-bottles">
       <div class="row">
           <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" ng-repeat="blood in blood_data">
             <div class="bottle">
@@ -24,6 +30,37 @@
             </div>
           </div>
       </div>
+    </div>
+
+    <div class="container requirement">
+        <div class="row">
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <div class="req-form">
+                    <h4>Requirement Form</h4>
+                        <form>
+
+                                <select ng-model="required_blood" ng-options="x.group for x in blood_data" class="form-field">
+                                        <option value="">Select Blood Group</option>
+                                </select>
+            
+                                <input type="number" min="0" placeholder="Number of Units Required"  class="form-field">
+            
+                            </form>
+                            <p class="status">Required Blood is Available, Drag into container !!</p>
+                </div>
+                
+                
+                
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <div class="bucket">
+                        <div class="blood-container">
+                    
+                        </div>
+                </div>
+                
+            </div>
+        </div>
     </div>
   </body>
 </html>
